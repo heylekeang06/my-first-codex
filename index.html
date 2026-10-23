@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>安心試算｜貸款月付金計算器</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7fc;color:#183251;font-family:system-ui,-apple-system,"Microsoft JhengHei",sans-serif}header{padding:22px max(22px,calc((100vw - 1040px)/2));background:white;border-bottom:1px solid #e1e9f3;font-weight:700;letter-spacing:2px}header b{display:inline-block;background:#2361d7;color:white;padding:5px 10px;border-radius:9px;margin-right:10px}main{max-width:1040px;margin:52px auto;padding:0 22px}.eyebrow{color:#2461d5;font-size:13px;letter-spacing:2px}h1{font-size:clamp(28px,5vw,40px);margin:12px 0}p{color:#6c7e97;line-height:1.8}.grid{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;margin-top:32px}.card{padding:30px;border:1px solid #dfe7f2;border-radius:18px;background:white;box-shadow:0 9px 30px #1b3e6a05}h2{font-size:18px;margin:0 0 25px}h2 span{color:#2461d5;font-size:12px;margin-right:10px}label{display:block;font-size:14px;font-weight:600;margin:22px 0 9px}.input{position:relative}.unit{position:absolute;right:15px;top:15px;color:#71839c}input{font:inherit;font-size:20px;width:100%;border:1px solid #cbd8e8;border-radius:9px;padding:12px 48px 12px 15px;color:#183251;background:#fcfdff}input:focus{outline:3px solid #d7e7ff;border-color:#2461d5}small{display:block;color:#74849a;font-size:12px;margin-top:7px}button{width:100%;padding:15px;border:0;border-radius:9px;background:#2461d5;color:white;font:inherit;font-weight:650;cursor:pointer;margin-top:25px}button:hover{background:#184eb3}button:focus-visible{outline:3px solid #8eb8ff;outline-offset:3px}.reset{margin-top:6px;padding:10px;color:#6d7f97;background:transparent}.reset:hover{background:#edf4ff}.result{background:#f9fbff}.hero{padding:26px;border-radius:12px;background:#1b56c5;color:white}.hero p{color:#d5e5ff;margin:0 0 13px;font-size:14px}.money{font-size:clamp(30px,4vw,45px);font-weight:750;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}.money small{display:inline;color:#d5e5ff;font-size:15px;margin-right:8px}.hero footer{color:#d5e5ff;font-size:12px;margin-top:12px}.row{display:flex;justify-content:space-between;gap:15px;margin-top:24px;font-size:14px}.row span{color:#6c7e97}.row strong{text-align:right;font-size:17px}.total{border-top:1px solid #dce6f3;padding-top:22px}.bar{height:9px;background:#90bbff;border-radius:9px;overflow:hidden;margin-top:30px}.bar div{height:100%;background:#2461d5}.legend{display:flex;justify-content:space-between;font-size:12px;margin-top:10px;color:#6c7e97}.note{font-size:12px;margin-top:25px}.info{margin-top:24px;padding:22px;background:#e9f1ff;border-radius:12px}.info p{font-size:13px;margin:7px 0 0}.info b{font-size:14px}main>footer{font-size:12px;color:#7b8ba0;text-align:center;margin:28px 0}#error{color:#b42318;font-size:13px}#status{font-size:12px;color:#6c7e97;margin-top:20px;line-height:1.6}@media(max-width:680px){main{margin-top:30px}.grid{grid-template-columns:1fr}.card{padding:24px}.money{font-size:37px}}
+</style></head><body><header><b aria-hidden="true">≋</b>安心試算</header><main><div class="eyebrow">每一步，算得更安心</div><h1>貸款月付金計算器</h1><p>輸入貸款條件，掌握每月負擔，為未來做好規劃。</p><div class="grid"><section class="card"><h2><span>01</span>設定貸款條件</h2><form id="form" novalidate>
+<label for="principal">貸款金額</label><div class="input"><input id="principal" type="number" inputmode="numeric" value="1000000" min="1" max="10000000000" step="1" required aria-describedby="p-help"><span class="unit">元</span></div><small id="p-help">新臺幣，1 ～ 100 億元的整數</small>
+<label for="rate">年利率</label><div class="input"><input id="rate" type="number" inputmode="decimal" value="2.5" min="0" max="100" step="any" required aria-describedby="r-help"><span class="unit">%</span></div><small id="r-help">固定年利率，支援 0% ～ 100%</small>
+<label for="years">貸款年限</label><div class="input"><input id="years" type="number" inputmode="numeric" value="20" min="1" max="50" step="1" required aria-describedby="y-help"><span class="unit">年</span></div><small id="y-help">1 ～ 50 年，以完整年數計算</small><p id="error" role="alert" hidden></p><button type="submit">計算每月還款金額 →</button><button type="reset" class="reset">重設為範例條件</button></form></section>
+<section class="card result"><h2><span>02</span>您的貸款試算</h2><div id="results" aria-live="polite" aria-atomic="true"><div class="hero"><p>每月應繳金額</p><div class="money"><small>NT$</small><span id="monthly">—</span></div><footer>本息平均攤還 · 共 <span id="months">—</span> 期</footer></div><div class="row"><span>貸款本金</span><strong id="p-result">—</strong></div><div class="row"><span>總利息</span><strong id="interest">—</strong></div><div class="row total"><span>總還款金額</span><strong id="total">—</strong></div><div class="bar" aria-hidden="true"><div id="bar"></div></div><div class="legend"><span id="p-percent"></span><span id="i-percent"></span></div></div><div id="status" role="status"></div><p class="note">金額顯示至小數點後 2 位；總額以未四捨五入的月付金計算。銀行逐期取整可能造成些微差異。</p></section></div>
+<aside class="info"><b>ⓘ 什麼是本息平均攤還？</b><p>固定利率下，每月繳交相同的本金與利息合計金額。還款初期利息占比較高，之後本金占比逐漸增加。本試算不含開辦費、保險費及寬限期，結果供財務規劃參考。</p></aside><footer>所有計算皆在瀏覽器內完成，不會傳送您的貸款資料。</footer></main><script>
+function calculateLoan(principal, annualRate, years) {
+ if (!Number.isInteger(principal) || principal < 1 || principal > 1e10) throw new Error('請輸入 1 ～ 100 億元的整數貸款金額。');
+ if (!Number.isFinite(annualRate) || annualRate < 0 || annualRate > 100) throw new Error('請輸入 0 ～ 100% 的年利率。');
+ if (!Number.isInteger(years) || years < 1 || years > 50) throw new Error('請輸入 1 ～ 50 年的整數貸款年限。');
+ const months = years * 12, r = annualRate / 1200;
+ const monthly = r === 0 ? principal / months : principal * r / -Math.expm1(-months * Math.log1p(r));
+ const interest = Math.max(0, monthly * months - principal);
+ return {monthly, months, interest, total: principal + interest};
+}
+const $ = id => document.getElementById(id);
+const format = x => x.toLocaleString('zh-TW',{minimumFractionDigits:2,maximumFractionDigits:2});
+const inputs = ['principal','rate','years'].map($);
+function update(){
+ inputs.forEach(el=>el.removeAttribute('aria-invalid'));
+ try{
+  const blank = inputs.find(el=>el.value.trim()==='');
+  if(blank){blank.setAttribute('aria-invalid','true');blank.focus();throw new Error('請完整填寫三個貸款條件。');}
+  const [p,r,y] = inputs.map(el=>Number(el.value));
+  const a = calculateLoan(p,r,y);
+  $('monthly').textContent=format(a.monthly);$('months').textContent=a.months;
+  $('p-result').textContent='NT$ '+format(p);$('interest').textContent='NT$ '+format(a.interest);$('total').textContent='NT$ '+format(a.total);
+  const pct=p/a.total*100;$('bar').style.width=pct+'%';$('p-percent').textContent='本金 '+pct.toFixed(1)+'%';$('i-percent').textContent='利息 '+(100-pct).toFixed(1)+'%';
+  $('error').hidden=true;$('status').textContent='已依目前輸入條件完成試算。';
+ }catch(e){$('error').hidden=false;$('error').textContent=e.message;$('status').textContent='結果尚未更新，請修正輸入後重新計算。';}
+}
+$('form').addEventListener('submit',e=>{e.preventDefault();update();});
+$('form').addEventListener('reset',()=>setTimeout(update,0));
+$('form').addEventListener('input',()=>{$('status').textContent='條件已變更，請按計算按鈕更新結果。';});update();
+</script></body></html>
